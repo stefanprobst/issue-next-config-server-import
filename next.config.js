@@ -1,5 +1,8 @@
 import createMDX from "@next/mdx";
-import { config as mdxConfig } from "./config/mdx.config.js";
+
+if (typeof document !== "undefined") {
+  throw new Error("Reading next.config.js on the client.");
+}
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,9 +10,7 @@ const nextConfig = {
 };
 
 const withMDX = createMDX({
-  options: {
-    rehypePlugins: mdxConfig.rehypePlugins,
-  },
+  options: {},
 });
 
 export default withMDX(nextConfig);
